@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html[data-theme='night'] {
+    background: #020817;
+    color: #f8fafc;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    font-family: theme('fontFamily.sans');
+    color: #24120d;
+    background: #fffaf6;
+  }
+
+  html[data-theme='night'] body {
+    background: radial-gradient(circle at top, rgba(249, 115, 22, 0.08), transparent 25%), #020817;
+    color: #f8fafc;
+  }
+
+  html[data-theme='night'] .bg-white,
+  html[data-theme='night'] .bg-stone-50,
+  html[data-theme='night'] .bg-orange-50,
+  html[data-theme='night'] .bg-rose-50,
+  html[data-theme='night'] .bg-white\/80,
+  html[data-theme='night'] .bg-white\/95,
+  html[data-theme='night'] [class*='bg-white/80'],
+  html[data-theme='night'] [class*='bg-white/95'],
+  html[data-theme='night'] [class*='bg-white/70'] {
+    background-color: rgba(15, 23, 42, 0.9) !important;
+  }
+
+  html[data-theme='night'] body,
+  html[data-theme='night'] main,
+  html[data-theme='night'] footer,
+  html[data-theme='night'] [class*='text-stone-'],
+  html[data-theme='night'] [class*='text-slate-'],
+  html[data-theme='night'] .text-white,
+  html[data-theme='night'] .text-slate-100,
+  html[data-theme='night'] .text-slate-200,
+  html[data-theme='night'] .text-slate-300,
+  html[data-theme='night'] .text-stone-950,
+  html[data-theme='night'] .text-stone-900,
+  html[data-theme='night'] .text-stone-800,
+  html[data-theme='night'] .text-stone-700,
+  html[data-theme='night'] .text-stone-600,
+  html[data-theme='night'] .text-stone-500,
+  html[data-theme='night'] .text-stone-400,
+  html[data-theme='night'] .text-stone-300,
+  html[data-theme='night'] .text-stone-200,
+  html[data-theme='night'] .text-slate-950,
+  html[data-theme='night'] .text-slate-900,
+  html[data-theme='night'] .text-slate-800,
+  html[data-theme='night'] .text-slate-700,
+  html[data-theme='night'] .text-slate-600,
+  html[data-theme='night'] .text-slate-500 {
+    color: #f8fafc !important;
+  }
+
+  html[data-theme='night'] .text-stone-950,
+  html[data-theme='night'] .text-stone-900,
+  html[data-theme='night'] .text-stone-800,
+  html[data-theme='night'] .text-stone-700,
+  html[data-theme='night'] .text-stone-600,
+  html[data-theme='night'] .text-stone-500 {
+    color: #e2e8f0 !important;
+  }
+
+  html[data-theme='night'] .border-white\/50,
+  html[data-theme='night'] .border-white\/40,
+  html[data-theme='night'] .border-white\/30,
+  html[data-theme='night'] .border-white\/20 {
+    border-color: rgba(148, 163, 184, 0.35) !important;
+  }
+
+  html[data-theme='night'] .text-stone-400,
+  html[data-theme='night'] .text-stone-300,
+  html[data-theme='night'] .text-stone-200 {
+    color: #cbd5e1 !important;
+  }
+
+  html[data-theme='night'] .border-orange-100,
+  html[data-theme='night'] .border-stone-200,
+  html[data-theme='night'] [class*='border-white/40'],
+  html[data-theme='night'] [class*='border-white/50'] {
+    border-color: rgba(251, 146, 60, 0.22) !important;
+  }
+
+  html[data-theme='night'] .bg-stone-950 {
+    background-color: #0f172a !important;
+  }
+
+  html[data-theme='night'] .text-orange-900,
+  html[data-theme='night'] .text-orange-800,
+  html[data-theme='night'] .text-rose-900,
+  html[data-theme='night'] .text-rose-800 {
+    color: #fdba74 !important;
+  }
+
+  html[data-theme='night'] .shadow-premium {
+    box-shadow: 0 20px 45px rgba(2, 6, 23, 0.45) !important;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+}

@@ -1,0 +1,104 @@
+package com.example.andah_ganesh_puja.entity;
+
+import com.example.andah_ganesh_puja.entity.enums.Role;
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.net.ProtocolFamily;
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+@Getter
+@Setter
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+
+public class ProfileEntity implements UserDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true)
+    private String email;
+
+    private String fullName;
+
+    private String password;
+    private String profileImageUrl;
+
+    @Column(updatable = false)
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
+
+    private Boolean isActive;
+    private String activationToken;
+
+
+    @PrePersist
+    public void prePersist() {
+        if (this.isActive == null)
+            isActive = false;
+        if (this.roles == null)
+            roles = Collections.singleton(Role.PUBLIC);
+    }
+
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        roles.forEach(
+                role -> {
+                    authorities.add(new SimpleGrantedAuthority("ROLE_" + role.name()));
+                }
+        );
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+
+    public void setUsername(String email) {
+         this.email=email;
+    }
+
+    public void setRole(Role role) {
+        if (role == null) {
+            this.roles = Collections.emptySet();
+            return;
+        }
+        this.roles = new HashSet<>(Collections.singleton(role));
+    }
+
+    public Role getRole() {
+        if (this.roles == null || this.roles.isEmpty()) {
+            return Role.PUBLIC;
+        }
+        return this.roles.iterator().next();
+    }
+
+  }
